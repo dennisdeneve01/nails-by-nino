@@ -1,0 +1,1 @@
+This is a portfolio for the small business 'Nails By Nino' in Port Edward, South Coast, KZN. It showcases her skills and services in a classy but minimalistic fashion.
