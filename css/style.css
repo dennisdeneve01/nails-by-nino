@@ -9685,3 +9685,29 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
+    /* Make the main heading dark */
+.ftco-intro .heading-section h2 {
+    color: #333333; /* A dark grey, good for readability */
+    /* Or a pure black */
+    /* color: #000000; */
+}
+
+/* Make the paragraph text dark */
+.ftco-intro p.ftco-animate {
+    color: #555555; /* A slightly lighter dark grey for body text */
+}
+
+/* Make the list item text dark */
+/* Note: The <a> tag inside the <li> also needs its color set */
+.ftco-intro ul.do-list li a {
+    color: #555555; /* Or a darker shade if needed */
+}
+
+/* Ensure the checkmark icon is also visible if it's a font icon */
+.ftco-intro ul.do-list li a .ion-ios-checkmark-circle {
+    color: #4CAF50; /* Example: a green checkmark */
+    /* Or inherit from its parent for consistency */
+    /* color: inherit; */
+}
