@@ -1,1 +1,3 @@
-This is a portfolio for the small business 'Nails By Nino' in Port Edward, South Coast, KZN. It showcases her skills and services in a classy but minimalistic fashion.
+**Nails By Nino - The Art of Beautiful Nails**
+
+Step into the elegant world of Nails By Nino, the digital showcase for a passionate nail artist with extensive experience in crafting exquisite and unique nail designs. This portfolio elegantly highlights Nino's mastery in the art of nail aesthetics, from timeless classics to avant-garde creations. Discover how her precision, creativity, and unwavering commitment to perfection shine through every set, always ready to transform a vision into stunning reality. Explore a collection that is both classy and minimalistic, reflecting the refined beauty Nino brings to every client.
