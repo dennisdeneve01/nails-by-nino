@@ -27,6 +27,20 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init({
+            publicKey: "qqkfBBQseJH7EIWYm",
+          });
+       })();
+    </script>
+
+
   </head>
   <body>
   	<div id="navbar-placeholder"></div>
@@ -75,30 +89,44 @@
 					</div>
 					<div class="col-md-1"></div>
           <div class="col-md-6 ftco-animate">
-            <form action="#" class="contact-form">
-            	<div class="row">
-            		<div class="col-md-6">
-	                <div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Your Name">
-	                </div>
-                </div>
-                <div class="col-md-6">
-	                <div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Your Email">
-	                </div>
-	                </div>
+          <form id="contactForm" class="contact-form"> <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <input type="text" class="form-control" id="name" name="user_name" placeholder="Your Name" required>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <input type="email" class="form-control" id="email" name="user_email" placeholder="Your Email" required>
+                      </div>
+                  </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
+                  <input type="text" class="form-control" id="subject" name="user_subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                  <textarea name="user_message" id="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                  <input type="submit" onclick ="sendMail()" value="Send Message" class="btn btn-primary py-3 px-5">
               </div>
-            </form>
-          </div>
+          </form>
+      </div>
+      <div class="col-md-6 ftco-animate">
+    <form id="contactForm" class="contact-form">
+        <!-- <div class="form-group">
+            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+        </div> -->
+
+        <div id="form-message-success" class="alert alert-success mt-4" style="display: none;">
+            Your message has been sent successfully!
+        </div>
+        <div id="form-message-warning" class="alert alert-danger mt-4" style="display: none;">
+            Something went wrong. Please try again later.
+        </div>
+
+    </form>
+</div>
         </div>
       </div>
     </section>
@@ -143,4 +171,58 @@
   <script src="js/main.js"></script>
     
   </body>
+
+
+ <script type="text/javascript">
+  
+
+    window.onload = function() {
+        const contactForm = document.getElementById('contactForm');
+
+        // Only proceed if the form element exists
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission (page reload)
+
+                // Get the message display elements
+                const successMessage = document.getElementById('form-message-success');
+                const warningMessage = document.getElementById('form-message-warning');
+
+                // Hide any previous messages
+                successMessage.style.display = 'none';
+                warningMessage.style.display = 'none';
+                warningMessage.innerText = 'Something went wrong. Please try again later.'; // Reset text
+
+                // Show a loading/sending message (optional but good UX)
+                const sendButton = this.querySelector('input[type="submit"]');
+                const originalButtonValue = sendButton.value;
+                sendButton.value = 'Sending...';
+                sendButton.disabled = true; // Disable button to prevent double clicks
+
+                // Your EmailJS Service ID and Template ID
+                const SERVICE_ID = 'service_gz4b0al'; // From your EmailJS dashboard
+                const TEMPLATE_ID = 'template_0cl8dn6'; // From your EmailJS dashboard
+
+                // Use emailjs.sendForm() directly with the form element
+                emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this) // 'this' refers to the form element
+                    .then(function(response) {
+                        console.log('Email sent successfully!', response.status, response.text);
+                        successMessage.style.display = 'block'; // Show success message
+                        contactForm.reset(); // Clear the form fields
+                        sendButton.value = originalButtonValue;
+                        sendButton.disabled = false;
+                    }, function(error) {
+                        console.error('Failed to send email:', error);
+                        warningMessage.innerText = 'Failed to send message. Error: ' + (error.text || JSON.stringify(error));
+                        warningMessage.style.display = 'block'; // Show warning message
+                        sendButton.value = originalButtonValue;
+                        sendButton.disabled = false;
+                    });
+            });
+        }
+    };
+</script>
+    
+
+
 </html>
